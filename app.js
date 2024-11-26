@@ -6,6 +6,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+
+app.use(cors());
+
 // Ruta para realizar el scraping
 app.post('/scrape', async (req, res) => {
     const { artistId } = req.body;
@@ -27,7 +30,6 @@ app.post('/scrape', async (req, res) => {
 });
 
 
-app.use(cors());
 
 
 // Escuchar en el puerto proporcionado por Render (o 3000 como fallback)
