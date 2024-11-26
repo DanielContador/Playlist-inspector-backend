@@ -4,13 +4,17 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 async function scrapeSpotifyPlaylists(artistId) {
-  const SCRAPER_API_KEY = '93254ddeb5b61191f57e32e2aa5ad9dc';  // Tu clave de API de ScraperAPI
-  const proxy = `http://${SCRAPER_API_KEY}@proxy-server.scraperapi.com:8001`; // Proxy de ScraperAPI
-
+// ScraperAPI proxy configuration
+PROXY_USERNAME = 'scraperapi';
+PROXY_PASSWORD = '93254ddeb5b61191f57e32e2aa5ad9dc'; // <-- enter your API_Key here
+PROXY_SERVER = 'proxy-server.scraperapi.com';
+PROXY_SERVER_PORT = '8001';
   const browser = await puppeteer.launch({
     headless: true, // o false para pruebas locales
     ignoreHTTPSErrors: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', `--proxy-server=${proxy}`,],
+    args: [
+      `--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT}`
+  ],
     
   }); // Navegador oculto
   const page = await browser.newPage();
@@ -19,6 +23,11 @@ async function scrapeSpotifyPlaylists(artistId) {
   );
   await page.setExtraHTTPHeaders({
     'Accept-Language': 'en-US,en;q=0.9',
+});
+
+await page.authenticate({
+  username: PROXY_USERNAME,
+  password: PROXY_PASSWORD,
 });
   const baseUrl = `https://open.spotify.com/intl-es/artist/${artistId}`;
   const allPlaylists = [];
