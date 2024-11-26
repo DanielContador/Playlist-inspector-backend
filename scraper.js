@@ -1,4 +1,7 @@
 const puppeteer = require('puppeteer');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
+puppeteer.use(StealthPlugin());
 
 async function scrapeSpotifyPlaylists(artistId) {
   const browser = await puppeteer.launch({
@@ -10,6 +13,10 @@ async function scrapeSpotifyPlaylists(artistId) {
   await page.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
   );
+
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'en-US,en;q=0.9',
+});
   const baseUrl = `https://open.spotify.com/intl-es/artist/${artistId}`;
   const allPlaylists = [];
 
