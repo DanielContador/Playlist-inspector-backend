@@ -11,7 +11,7 @@ async function scrapeSpotifyPlaylists(artistId) {
     await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
 
     // Obtener artistas relacionados
-    await page.waitForSelector('div[data-testid="grid-container"]', { timeout: 15000 });
+    await page.waitForSelector('div[data-testid="grid-container"]', { timeout: 30000 });
     const relatedArtists = await page.$$eval(
       'div[data-testid="grid-container"] [id^="card-subtitle-spotify:artist:"]',
       (elements) =>
@@ -27,7 +27,7 @@ async function scrapeSpotifyPlaylists(artistId) {
       await page.goto(discoveredUrl, { waitUntil: 'domcontentloaded' });
 
       try {
-        await page.waitForSelector('div[role="button"]', { timeout: 15000 });
+        await page.waitForSelector('div[role="button"]', { timeout: 30000 });
       } catch {
         return []; // Si no encuentra la sección, devolvemos un arreglo vacío
       }
@@ -50,7 +50,7 @@ async function scrapeSpotifyPlaylists(artistId) {
           if (playlistElement) {
             await page.click(playlist.selector);
 
-            await page.waitForSelector('div.RP2rRchy4i8TIp1CTmb7', { timeout: 15000 });
+            await page.waitForSelector('div.RP2rRchy4i8TIp1CTmb7', { timeout: 30000 });
 
             const details = await page.evaluate(() => {
               const container = document.querySelector('div.RP2rRchy4i8TIp1CTmb7');
