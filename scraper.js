@@ -13,8 +13,10 @@ PROXY_SERVER_PORT = '8001';
     headless: true, // o false para pruebas locales
     ignoreHTTPSErrors: true,
     args: [
-      `--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT},  '--ignore-certificate-errors'`
-  ],
+      `--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT}`, 
+      '--ignore-certificate-errors', 
+      '--enable-features=NetworkService'
+    ],
     
   }); // Navegador oculto
   const page = await browser.newPage();
