@@ -1,15 +1,15 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeSpotifyPlaylists(artistId) {
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: chromium.path, // Usa el path del Chromium instalado
+  browser = await puppeteer.launch({
+    headless: false,
+    ignoreDefaultArgs: ["--disable-extensions"],
     args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-gpu'
-    ]
+      "--no-sandbox",
+      "--use-gl=egl",
+      "--disable-setuid-sandbox",
+    ],
+    ignoreHTTPSErrors: true,
   });// Navegador oculto
   const page = await browser.newPage();
 // Establecer un userAgent personalizado
