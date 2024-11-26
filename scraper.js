@@ -18,7 +18,7 @@ async function scrapeSpotifyPlaylists(artistId) {
         elements
           .map((el) => el.id.match(/card-subtitle-spotify:artist:([^-\s]+)/)?.[1])
           .filter(Boolean)
-          .slice(0, 5)
+          .slice(0, 2)
     );
 
     // Función para extraer playlists de la sección "Discovered On"
