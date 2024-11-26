@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const scrapeSpotifyPlaylists = require('./scraper/scraper');
+const scrapeSpotifyPlaylists = require('scraper.js');
 
 const app = express();
 app.use(bodyParser.json());
