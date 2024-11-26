@@ -26,7 +26,7 @@ app.post('/scrape', async (req, res) => {
     }
 });
 
-const cors = require('cors');
+
 app.use(cors());
 
 
