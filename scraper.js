@@ -3,7 +3,8 @@ const puppeteer = require('puppeteer');
 async function scrapeSpotifyPlaylists(artistId) {
   const browser = await puppeteer.launch({
     headless: true, // o false para pruebas locales
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server=PROXY_URL'],
+
   }); // Navegador oculto
   const page = await browser.newPage();
   await page.setUserAgent(
