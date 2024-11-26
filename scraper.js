@@ -13,7 +13,7 @@ PROXY_SERVER_PORT = '8001';
     headless: true, // o false para pruebas locales
     ignoreHTTPSErrors: true,
     args: [
-      `--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT}`
+      `--proxy-server=http://${PROXY_SERVER}:${PROXY_SERVER_PORT},  '--ignore-certificate-errors'`
   ],
     
   }); // Navegador oculto
