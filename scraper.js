@@ -1,14 +1,20 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeSpotifyPlaylists(artistId) {
-  const browser = await puppeteer.launch({ headless: true }); // Navegador oculto
+  const browser = await puppeteer.launch({
+    headless: true, // o false para pruebas locales
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security'],
+  }); // Navegador oculto
   const page = await browser.newPage();
-
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+  );
   const baseUrl = `https://open.spotify.com/intl-es/artist/${artistId}`;
   const allPlaylists = [];
 
   try {
-    await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+    await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+   
 
     const pageContent = await page.content();
     console.log('Page content loaded:', pageContent);
