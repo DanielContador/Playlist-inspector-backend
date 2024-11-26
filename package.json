@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx puppeteer install"
+    "postinstall": "npx puppeteer browsers install"
   },
   "keywords": [],
   "author": "",
