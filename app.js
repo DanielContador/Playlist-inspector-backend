@@ -6,6 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+// Ruta para realizar el scraping
 app.post('/scrape', async (req, res) => {
     const { artistId } = req.body;
     console.log(`Se recibió el ID del artista: ${artistId}`);
@@ -23,6 +24,10 @@ app.post('/scrape', async (req, res) => {
       console.error('Error al realizar el scraping:', error);
       res.status(500).json({ error: 'Error al realizar el scraping' });
     }
-  });
-  
-app.listen(3000, () => console.log('Servidor iniciado en http://localhost:3000'));
+});
+
+// Escuchar en el puerto proporcionado por Render (o 3000 como fallback)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor iniciado en http://0.0.0.0:${PORT}`);
+});
