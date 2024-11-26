@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeSpotifyPlaylists(artistId) {
-  const browser = await puppeteer.launch({ headless: false }); // Navegador oculto
+  const browser = await puppeteer.launch({ headless: true }); // Navegador oculto
   const page = await browser.newPage();
 
   const baseUrl = `https://open.spotify.com/intl-es/artist/${artistId}`;
