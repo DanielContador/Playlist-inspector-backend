@@ -7,14 +7,13 @@ async function scrapeSpotifyPlaylists(artistId) {
   const browser = await puppeteer.launch({
     headless: true, // o false para pruebas locales
     ignoreHTTPSErrors: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server=http://168.119.53.93:80'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server="http://scraperapi:93254ddeb5b61191f57e32e2aa5ad9dc@proxy-server.scraperapi.com:8001"'],
     
   }); // Navegador oculto
   const page = await browser.newPage();
   await page.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
   );
-
   await page.setExtraHTTPHeaders({
     'Accept-Language': 'en-US,en;q=0.9',
 });
