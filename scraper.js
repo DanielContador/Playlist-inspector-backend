@@ -4,10 +4,12 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 async function scrapeSpotifyPlaylists(artistId) {
+  const proxy = `http://scraperapi:93254ddeb5b61191f57e32e2aa5ad9dc@proxy-server.scraperapi.com:8001`; 
+
   const browser = await puppeteer.launch({
     headless: true, // o false para pruebas locales
     ignoreHTTPSErrors: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', '--proxy-server="http://scraperapi:93254ddeb5b61191f57e32e2aa5ad9dc@proxy-server.scraperapi.com:8001"'],
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-web-security', `--proxy-server=${proxy}`,],
     
   }); // Navegador oculto
   const page = await browser.newPage();
