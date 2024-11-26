@@ -4,7 +4,8 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 async function scrapeSpotifyPlaylists(artistId) {
-  const proxy = `http://scraperapi:93254ddeb5b61191f57e32e2aa5ad9dc@proxy-server.scraperapi.com:8001`; 
+  const SCRAPER_API_KEY = '93254ddeb5b61191f57e32e2aa5ad9dc';  // Tu clave de API de ScraperAPI
+  const proxy = `http://${SCRAPER_API_KEY}@proxy-server.scraperapi.com:8001`; // Proxy de ScraperAPI
 
   const browser = await puppeteer.launch({
     headless: true, // o false para pruebas locales
