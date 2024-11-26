@@ -11,6 +11,10 @@ async function scrapeSpotifyPlaylists(artistId) {
     await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
 
     // Obtener artistas relacionados
+    await page.screenshot({ path: 'error_screenshot.png' });
+const pageContent = await page.content();
+console.log(pageContent);
+
     await page.waitForSelector('div[data-testid="grid-container"]', { timeout: 30000 });
     const relatedArtists = await page.$$eval(
       'div[data-testid="grid-container"] [id^="card-subtitle-spotify:artist:"]',
