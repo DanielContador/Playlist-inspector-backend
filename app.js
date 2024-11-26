@@ -7,7 +7,11 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 
-app.use(cors());
+app.use(cors({
+  origin: '*',  // Permite todos los orígenes
+  methods: 'GET, POST, PUT, DELETE',  // Permite estos métodos
+  allowedHeaders: 'Content-Type, Authorization'  // Permite estos encabezados
+}));
 
 // Ruta para realizar el scraping
 app.post('/scrape', async (req, res) => {
